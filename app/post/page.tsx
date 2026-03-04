@@ -1,46 +1,57 @@
-'use client';
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-
-const posts = [
-  {
-    id: 1,
-    title: 'Post Title 1',
-    description: 'This is the first post. It contains some text and a thumbnail image.',
-    thumbnailUrl: '/thumbnail1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Post Title 2',
-    description: 'This is the second post. It also contains some text and a thumbnail image.',
-    thumbnailUrl: '/thumbnail2.jpg',
-  },
-  // Add more posts as needed
-];
-
-export default function PostPage() {
+const PostPage: React.FC = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <header style={{ margin: '20px 0' }}>
-        <h1 style={{ fontSize: '2em', textAlign: 'center' }}>Posts</h1>
-        <p style={{ color: '#666', textAlign: 'center' }}>Explore our latest posts.</p>
-      </header>
-
-      <main style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px', width: '80%', margin: '20px 0' }}>
-        {posts.map(post => (
-          <Link key={post.id} href={`/post/${post.id}`} style={{ textDecoration: 'none' }}>
-            <div style={{ border: '1px solid #ddd', borderRadius: '5px', overflow: 'hidden', width: '100%' }}>
-              <Image src={post.thumbnailUrl} alt={post.title} width={300} height={200} style={{ maxWidth: '100%', height: 'auto' }} />
-              <div style={{ padding: '10px' }}>
-                <h2 style={{ fontSize: '1.5em', margin: 0 }}>{post.title}</h2>
-                <p style={{ color: '#666', fontSize: '1em', margin: 0 }}>{post.description}</p>
-              </div>
+    <html lang="ko">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>게시글 페이지</title>
+        <meta name="description" content="여기에 게시글에 대한 간단한 설명을 입력하세요." />
+        <meta name="keywords" content="게시글, 예시, 설명" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body>
+        <div className="flex flex-col items-center justify-center min-h-screen">
+          <header className="max-w-3xl mx-auto text-center py-10">
+            <h1 className="text-4xl font-bold mb-2">게시글 페이지</h1>
+            <p className="text-xl text-gray-600">여기에 게시글에 대한 간단한 설명을 입력하세요.</p>
+          </header>
+          <main className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* 게시글 리스트 */}
+            <div className="flex flex-col space-y-4">
+              {/* 게시글 1 */}
+              <Card>
+                <img src="https://via.placeholder.com/200" alt="게시글 썸네일" style={{ width: '100%', height: 'auto' }} />
+                <div className="p-4">
+                  <h2 className="text-xl font-bold mb-2">게시글 제목 1</h2>
+                  <p className="text-gray-600">게시글 내용 1...</p>
+                </div>
+              </Card>
+              {/* 게시글 2 */}
+              <Card>
+                <img src="https://via.placeholder.com/200" alt="게시글 썸네일" style={{ width: '100%', height: 'auto' }} />
+                <div className="p-4">
+                  <h2 className="text-xl font-bold mb-2">게시글 제목 2</h2>
+                  <p className="text-gray-600">게시글 내용 2...</p>
+                </div>
+              </Card>
+              {/* 게시글 3 */}
+              <Card>
+                <img src="https://via.placeholder.com/200" alt="게시글 썸네일" style={{ width: '100%', height: 'auto' }} />
+                <div className="p-4">
+                  <h2 className="text-xl font-bold mb-2">게시글 제목 3</h2>
+                  <p className="text-gray-600">게시글 내용 3...</p>
+                </div>
+              </Card>
             </div>
-          </Link>
-        ))}
-      </main>
-    </div>
+          </main>
+        </div>
+      </body>
+    </html>
   );
-}
+};
+
+export default PostPage;
