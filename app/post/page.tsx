@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const PostListPage = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     // Simulate fetching posts from an API
