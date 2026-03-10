@@ -1,38 +1,54 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Metadata } from "next";
 
-const PostListPage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+// export const metadata: Metadata = {
+//   title: "Post Page",
+//   description: "A page displaying a list of posts with thumbnails, titles, and text",
+// };
 
-  useEffect(() => {
-    // Simulate fetching posts from an API
-    const fetchPosts = async () => {
-      const response = await fetch('/api/posts');
-      const data = await response.json();
-      setPosts(data);
-    };
-
-    fetchPosts();
-  }, []);
+export default function PostPage() {
+  const posts = [
+    {
+      id: 1,
+      title: "Post Title 1",
+      text: "This is the text for post 1.",
+      thumbnail: "/path/to/post1-thumbnail.jpg",
+    },
+    {
+      id: 2,
+      title: "Post Title 2",
+      text: "This is the text for post 2.",
+      thumbnail: "/path/to/post2-thumbnail.jpg",
+    },
+    {
+      id: 3,
+      title: "Post Title 3",
+      text: "This is the text for post 3.",
+      thumbnail: "/path/to/post3-thumbnail.jpg",
+    },
+  ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', padding: '20px' }}>
-      <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '8px', display: 'flex', flexDirection: 'column' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>Welcome to the Post Page</h1>
-        <p style={{ fontSize: '16px', color: '#555' }}>Here you can find all the latest posts.</p>
-      </div>
-      {posts.map((post, index) => (
-        <div key={index} style={{ background: '#fff', padding: '20px', borderRadius: '8px', display: 'flex' }}>
-          <img src={post.thumbnail} alt={post.title} style={{ width: '100px', height: '100px', borderRadius: '8px', marginRight: '20px' }} />
-          <div>
-            <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>{post.title}</h2>
-            <p style={{ fontSize: '14px', color: '#555' }}>{post.description}</p>
+    <main>
+      <h1>Posts</h1>
+      <p>Here are some of our latest posts.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {posts.map((post) => (
+          <div key={post.id} className="border p-4">
+            <Image
+              src={post.thumbnail}
+              alt={post.title}
+              width={200}
+              height={200}
+              className="mb-2"
+            />
+            <h2>{post.title}</h2>
+            <p>{post.text}</p>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </main>
   );
-};
-
-export default PostListPage;
+}
