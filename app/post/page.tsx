@@ -1,54 +1,37 @@
-"use client";
+import Link from 'next/link';
 
-import Image from "next/image";
-import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "Post Page",
-//   description: "A page displaying a list of posts with thumbnails, titles, and text",
-// };
-
-export default function PostPage() {
-  const posts = [
-    {
-      id: 1,
-      title: "Post Title 1",
-      text: "This is the text for post 1.",
-      thumbnail: "/path/to/post1-thumbnail.jpg",
-    },
-    {
-      id: 2,
-      title: "Post Title 2",
-      text: "This is the text for post 2.",
-      thumbnail: "/path/to/post2-thumbnail.jpg",
-    },
-    {
-      id: 3,
-      title: "Post Title 3",
-      text: "This is the text for post 3.",
-      thumbnail: "/path/to/post3-thumbnail.jpg",
-    },
-  ];
-
+const PostList = () => {
   return (
-    <main>
-      <h1>Posts</h1>
-      <p>Here are some of our latest posts.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
-          <div key={post.id} className="border p-4">
-            <Image
-              src={post.thumbnail}
-              alt={post.title}
-              width={200}
-              height={200}
-              className="mb-2"
-            />
-            <h2>{post.title}</h2>
-            <p>{post.text}</p>
-          </div>
-        ))}
-      </div>
-    </main>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <PostItem
+        thumbnail="/thumbnail1.jpg"
+        title="Post 1"
+        description="This is the first post."
+      />
+      <PostItem
+        thumbnail="/thumbnail2.jpg"
+        title="Post 2"
+        description="This is the second post."
+      />
+      <PostItem
+        thumbnail="/thumbnail3.jpg"
+        title="Post 3"
+        description="This is the third post."
+      />
+    </div>
   );
-}
+};
+
+const PostItem = ({ thumbnail, title, description }: { thumbnail: string, title: string, description: string }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-4">
+      <Link href="/post/1" className="block">
+        <img src={thumbnail} alt={title} className="w-full h-48 object-cover rounded-t-lg" />
+        <h2 className="mt-2 text-xl font-bold">{title}</h2>
+        <p className="mt-1 text-gray-700">{description}</p>
+      </Link>
+    </div>
+  );
+};
+
+export default PostList;
