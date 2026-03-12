@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -56,9 +54,6 @@ const PostDetailPage = () => {
           </Link>
         )}
       </div>
-      <Link href="/post/list" style={{ marginTop: '20px', display: 'block' }}>
-        목록 보기
-      </Link>
     </div>
   );
 };
