@@ -1,33 +1,26 @@
 {
   "name": "testsyncrepo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yohan-work/testsyncrepo.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yohan-work/testsyncrepo/issues"
-  },
-  "homepage": "https://github.com/yohan-work/testsyncrepo#readme",
   "dependencies": {
-    "next": "^16.1.4"
+    "next": "16.2.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.1",
-    "@types/node": "25.4.0",
-    "@types/react": "19.2.14",
-    "react-grab": "^0.1.28",
-    "tailwindcss": "^4.2.1",
-    "typescript": "5.9.3"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
