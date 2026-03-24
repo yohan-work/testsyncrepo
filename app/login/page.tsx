@@ -1,68 +1,62 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { Button, Input, Label } from '@/components/ui';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // TODO: Implement form submission logic here
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        setError(data.message || 'Login failed');
-        return;
+        throw new Error("Invalid credentials");
       }
 
       // Handle successful login
-      window.location.href = '/dashboard';
+      const data = await response.json();
+      window.location.href = "/";
     } catch (error) {
-      setError('An error occurred while logging in.');
+      // Display error message to user
+      console.error("Login failed:", error);
+      alert("로그인 실패: 잘못된 이메일 주소 또는 비밀번호");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <form onSubmit={handleSubmit} className="p-8 border rounded-lg shadow-md w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-6">Log in</h1>
-        <div className="mb-4">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
-          />
+    <main className="flex flex-col items-center justify-center h-screen bg-background">
+      <h1 className="text-2xl font-bold">로그인</h1>
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4 w-full max-w-sm">
+        <div className="space-y-1.5">
+          <Label htmlFor="email">이메일 주소</Label>
+          <Input id="email" type="email" name="email" placeholder="you@example.com" required />
         </div>
-        <div className="mb-4">
-          <Label htmlFor="password">Password</Label>
-          <Input
+        <div className="space-y-1.5 relative">
+          <Label htmlFor="password">비밀번호</Label>
+          <input
             id="password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded px-3 py-2 w-full focus:outline-none focus:border-blue-500"
+            name="password"
+            placeholder="••••••••"
+            required
+            className="w-full"
           />
         </div>
-        {error && (
-          <div className="text-red-500 mb-4">{error}</div>
-        )}
-        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
-          Log in
+        <Button type="submit" className="w-full">
+          로그인
         </Button>
       </form>
-    </div>
+      <Link href="/forgot-password" className="text-sm text-muted-foreground underline">
+        비밀번호를 잊으셨나요?
+      </Link>
+    </main>
   );
 };
 
