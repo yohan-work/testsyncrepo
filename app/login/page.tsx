@@ -23,7 +23,7 @@ export default function LoginPage() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-[var(--color-background)]">
       <div className="p-8 bg-[var(--color-background)] rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-[var(--color-foreground)]">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-[var(--color-foreground)]">로그인</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-[var(--color-foreground)]">Email</label>
