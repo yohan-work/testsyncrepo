@@ -1,0 +1,2 @@
+
+- [2026-03-31T02:11:57.682Z] 실행 실패: TypeScript errors in app/dashboard/page.tsx: [TS2322] Type '{ title: string; value: string; }' is not assignable to type 'IntrinsicAttributes & FeaturesProps & RefAttributes<HTMLDivElement>'. Property 'value' does not exist on type 'IntrinsicAttributes & FeaturesProps & RefAttributes<HTMLDivElement>'. (line 20:33) [TS2322] Type '{ title: string; value: string; }' is not assignable to type 'IntrinsicAttributes & FeaturesProps & RefAttributes<HTMLDivElement>'. Property 'value' does not exist o
