@@ -6,12 +6,8 @@ export const metadata: Metadata = {
   description: 'Claude 코드의 핵심 기능과 장점을 명확하게 설명하는 반응형 랜딩 페이지입니다.',
 };
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <html lang="ko">
-      <body className="bg-zinc-950 text-white font-sans">{children}</body>
-    </html>
-  );
+const LandingPageServer = () => {
+  return <div>Server-side only content</div>;
 };
 
-export default Layout;
+export default LandingPageServer;
