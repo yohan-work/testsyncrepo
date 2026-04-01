@@ -1,54 +1,65 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
+const data = [
+  {
+    id: 1,
+    featureName: "코드 자동 완성",
+    featureDescription: "Claude 코드를 기반으로 코드 자동 완성 기능을 제공하여 생산성을 향상시킵니다.",
+    icon: "🎨",
+    detailsLink: "/details/feature-1"
+  },
+  {
+    id: 2,
+    featureName: "실시간 코드 분석",
+    featureDescription: "Claude 코드를 실시간으로 분석하여 잠재적인 오류를 찾아냅니다.",
+    icon: "🔍",
+    detailsLink: "/details/feature-2"
+  },
+  {
+    id: 3,
+    featureName: "코드 공유 및 협업",
+    featureDescription: "Claude 코드를 쉽게 공유하고 협업하여 개발 효율성을 높입니다.",
+    icon: "🤝",
+    detailsLink: "/details/feature-3"
+  }
+];
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <header className="mt-10">
-        <img src="/logo.png" alt="Cursor IDE Logo" width={150} height={150} />
-        <h1 className="text-4xl font-bold mt-2">Cursor IDE</h1>
-        <p className="text-xl text-gray-600 mt-2">코드 작성의 새로운 기준</p>
-      </header>
-
-      <section className="mt-20">
-        <h2 className="text-3xl font-semibold mb-4">주요 기능 소개</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center">
-            <img src="/features/auto-complete.png" alt="실시간 코드 완성" width={100} height={100} />
-            <h3>실시간 코드 완성</h3>
-            <p>효율적인 코드 작성을 위한 실시간 자동완성 기능입니다.</p>
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <img src="/features/integrated-debugging.png" alt="통합 디버깅" width={100} height={100} />
-            <h3>통합 디버깅</h3>
-            <p>단순한 디버깅이 아니라, 복잡한 코드를 한눈에 파악할 수 있는 통합 디버깅 기능입니다.</p>
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <img src="/features/collaboration.png" alt="협업 기능" width={100} height={100} />
-            <h3>협업 기능</h3>
-            <p>팀원들과 실시간으로 코드를 공유하고 수정할 수 있는 협업 기능입니다.</p>
-          </div>
-        </div>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-zinc-950 text-white">
+      <header className="text-2xl font-bold mb-8">Claude Code 설명</header>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold mb-4">메인 소개</h2>
+        <p>코드 자동 완성, 실시간 코드 분석, 코드 공유 및 협업 등 다양한 기능을 제공합니다.</p>
       </section>
-
-      <section className="mt-20">
-        <h2 className="text-3xl font-semibold mb-4">데모 영상</h2>
-        <video controls autoPlay loop muted>
-          <source src="/demo.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold mb-4">주요 기능</h2>
+        <table className="w-full border-collapse border border-zinc-800">
+          <thead className="bg-zinc-950">
+            <tr>
+              <th className="border p-3 text-left">기능 이름</th>
+              <th className="border p-3 text-left">설명</th>
+              <th className="border p-3 text-center">자세히 보기</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr key={item.id} className="border-b border-zinc-800">
+                <td className="border p-3">{item.featureName}</td>
+                <td className="border p-3">{item.featureDescription}</td>
+                <td className="border p-3 text-center">
+                  <Link href={item.detailsLink}>
+                    <Button type="button" className="bg-indigo-600 hover:bg-indigo-700">자세히 보기</Button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
-
-      <footer className="mt-20">
-        <div>
-          <Link href="https://www.cursoride.com" target="_blank">https://www.cursoride.com</Link>
-        </div>
-        <div className="text-gray-600 mt-2">
-          © 2024 Cursor IDE. All rights reserved.
-        </div>
-      </footer>
-    </div>
+    </main>
   );
 };
 
